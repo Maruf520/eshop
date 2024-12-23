@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Category } from '../types/category.type';
+import { categories } from '../sampleData/category.type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
+  constructor() {}
 
-  constructor() { }
+  getAllCategories(): Category[] {
+    return categories;
+  }
 }
