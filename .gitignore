@@ -1,42 +1,42 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+estore/dist
+estore/tmp
+estore/out-tsc
+estore/bazel-out
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+estore/node_modules
+estore/npm-debug.log
+estore/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+estore/.idea/
+estore/.project
+estore/.classpath
+estore/.c9/
+estore/*.launch
+estore/.settings/
+estore/*.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+estore/.vscode/*
+!estore/.vscode/settings.json
+!estore/.vscode/tasks.json
+!estore/.vscode/launch.json
+!estore/.vscode/extensions.json
+estore/.history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+estore/.angular/cache
+estore/.sass-cache/
+estore/connect.lock
+estore/coverage
+estore/libpeerconnection.log
+estore/testem.log
+estore/typings
 
 # System files
-.DS_Store
-Thumbs.db
+estore/.DS_Store
+estore/Thumbs.db
