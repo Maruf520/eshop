@@ -7,6 +7,7 @@ import { CatnavigationComponent } from './components/catnavigation/catnavigation
 import { SidenavigationComponent } from './components/sidenavigation/sidenavigation.component';
 import { ProductsComponent } from './components/products/products.component';
 import { RatingsComponent } from '../shared/components/ratings/ratings.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { RatingsComponent } from '../shared/components/ratings/ratings.component
     SidenavigationComponent,
     ProductsComponent,
     RatingsComponent,
+    SharedModule,
   ],
 })
 export class HomeModule {}
