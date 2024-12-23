@@ -6,6 +6,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { CatnavigationComponent } from './components/catnavigation/catnavigation.component';
 import { SidenavigationComponent } from './components/sidenavigation/sidenavigation.component';
 import { ProductsComponent } from './components/products/products.component';
+import { RatingsComponent } from '../shared/components/ratings/ratings.component';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -16,6 +18,7 @@ import { ProductsComponent } from './components/products/products.component';
     CatnavigationComponent,
     SidenavigationComponent,
     ProductsComponent,
+    RatingsComponent,
   ],
 })
 export class HomeModule {}
