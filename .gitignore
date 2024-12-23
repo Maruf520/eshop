@@ -8,6 +8,7 @@ estore/bazel-out
 
 # Node
 estore/node_modules
+estore-server/node_modules
 estore/npm-debug.log
 estore/yarn-error.log
 
@@ -20,6 +21,8 @@ estore/*.launch
 estore/.settings/
 estore/*.sublime-workspace
 
+# Visual Studio Code
+estore/.vscode/
 # Visual Studio Code
 estore/.vscode/*
 !estore/.vscode/settings.json
