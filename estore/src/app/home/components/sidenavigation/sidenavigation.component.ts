@@ -13,7 +13,10 @@ import { CommonModule } from '@angular/common';
 export class SidenavigationComponent {
   categories: Category[] = [];
   constructor(categoryServices: CategoryService) {
-    this.categories = categoryServices.getAllCategories();
+    categoryServices.getAllCategories().subscribe((categories) => {
+      console.log(categories);
+      this.categories = categories;
+    });
   }
   getCategories(parentCategoryId?: number) {
     return parentCategoryId === undefined

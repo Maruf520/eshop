@@ -8,6 +8,8 @@ import { SidenavigationComponent } from './components/sidenavigation/sidenavigat
 import { ProductsComponent } from './components/products/products.component';
 import { RatingsComponent } from '../shared/components/ratings/ratings.component';
 import { SharedModule } from '../shared/shared.module';
+import { CategoryService } from './services/category.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -21,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
     ProductsComponent,
     RatingsComponent,
     SharedModule,
+    HttpClientModule,
   ],
 })
 export class HomeModule {}
