@@ -3,6 +3,7 @@ import { CatnavigationComponent } from './components/catnavigation/catnavigation
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavigationComponent } from './components/sidenavigation/sidenavigation.component';
 import { ProductsComponent } from './components/products/products.component';
+import { CategoryStoreItem } from './services/categories.storeitmes';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,12 @@ import { ProductsComponent } from './components/products/products.component';
     SidenavigationComponent,
     ProductsComponent,
   ],
+  providers: [CategoryStoreItem],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(private categoryStoreItem: CategoryStoreItem) {
+    this.categoryStoreItem.loadCategories();
+  }
+}

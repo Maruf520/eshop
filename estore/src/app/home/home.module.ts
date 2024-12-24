@@ -10,6 +10,7 @@ import { RatingsComponent } from '../shared/components/ratings/ratings.component
 import { SharedModule } from '../shared/shared.module';
 import { CategoryService } from './services/category.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryStoreItem } from './services/categories.storeitmes';
 
 @NgModule({
   declarations: [],
@@ -23,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProductsComponent,
     RatingsComponent,
     SharedModule,
-    HttpClientModule,
   ],
+  providers: [CategoryService, CategoryStoreItem],
 })
 export class HomeModule {}
