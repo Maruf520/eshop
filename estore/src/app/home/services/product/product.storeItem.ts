@@ -9,8 +9,8 @@ export class ProductStoreItem extends StoreItem<Product[]> {
   constructor(private productService: ProductsService) {
     super([]);
   }
-  async loadProducts() {
-    this.productService.getProducts().subscribe((products) => {
+  async loadProducts(query?: string) {
+    this.productService.getProducts(query).subscribe((products) => {
       this.setValue(products);
     });
   }
