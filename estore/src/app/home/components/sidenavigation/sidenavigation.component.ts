@@ -32,7 +32,7 @@ export class SidenavigationComponent implements OnDestroy {
         );
   }
 
-  onSubCategoryClick(subCategory: Category) {
+  onSubCategoryClick(subCategory: Category): void {
     this.subCategoryClicked.emit(subCategory.id);
   }
 

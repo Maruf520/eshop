@@ -5,6 +5,7 @@ import { SidenavigationComponent } from './components/sidenavigation/sidenavigat
 import { ProductsComponent } from './components/products/products.component';
 import { CategoryStoreItem } from './services/category/categories.storeitmes';
 import { ProductStoreItem } from './services/product/product.storeItem';
+import { Category } from './types/category.type';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,10 @@ export class HomeComponent {
     this.productStoreItem.loadProducts();
   }
 
-  onSelectSubCategory(subCategoryId: number) {
+  onSelectSubCategory(subCategoryId: number): void {
     this.productStoreItem.loadProducts('subcategoryid=' + subCategoryId);
+  }
+  onSelectCategory(category: number): void {
+    this.productStoreItem.loadProducts('maincategoryid=' + category);
   }
 }
