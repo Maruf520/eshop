@@ -3,7 +3,8 @@ import { CatnavigationComponent } from './components/catnavigation/catnavigation
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavigationComponent } from './components/sidenavigation/sidenavigation.component';
 import { ProductsComponent } from './components/products/products.component';
-import { CategoryStoreItem } from './services/categories.storeitmes';
+import { CategoryStoreItem } from './services/category/categories.storeitmes';
+import { ProductStoreItem } from './services/product/product.storeItem';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,16 @@ import { CategoryStoreItem } from './services/categories.storeitmes';
     SidenavigationComponent,
     ProductsComponent,
   ],
-  providers: [CategoryStoreItem],
+  providers: [CategoryStoreItem, ProductStoreItem],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(private categoryStoreItem: CategoryStoreItem) {
+  constructor(
+    private categoryStoreItem: CategoryStoreItem,
+    private productStoreItem: ProductStoreItem
+  ) {
     this.categoryStoreItem.loadCategories();
+    this.productStoreItem.loadProducts();
   }
 }

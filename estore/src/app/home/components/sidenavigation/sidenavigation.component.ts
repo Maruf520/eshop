@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Category } from '../../types/category.type';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { CategoryStoreItem } from '../../services/categories.storeitmes';
+import { CategoryStoreItem } from '../../services/category/categories.storeitmes';
 
 @Component({
   selector: 'app-sidenavigation',

@@ -3,7 +3,19 @@ const products = express.Router();
 const pool = require('../shared/pool');
 
 products.get('/', (req, res) => {
-  pool.query('select * from products', (error, products) => {
+  var mainCategoryId = req.query.maincategoryid;
+  var subCategoryId = req.query.subcategoryid;
+
+  let query = 'select * from products';
+  if (subCategoryId) {
+    query += ' where category_id = ' + subCategoryId;
+  }
+
+  if (mainCategoryId) {
+    query = `select products.* from products, categories 
+    where products.category_id = categories.id and categories.parent_category_id = ${mainCategoryId}`;
+  }
+  pool.query(query, (error, products) => {
     if (error) {
       res.status(500).send(error);
     } else {

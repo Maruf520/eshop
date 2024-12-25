@@ -8,9 +8,9 @@ import { SidenavigationComponent } from './components/sidenavigation/sidenavigat
 import { ProductsComponent } from './components/products/products.component';
 import { RatingsComponent } from '../shared/components/ratings/ratings.component';
 import { SharedModule } from '../shared/shared.module';
-import { CategoryService } from './services/category.service';
-import { HttpClientModule } from '@angular/common/http';
-import { CategoryStoreItem } from './services/categories.storeitmes';
+import { CategoryService } from './services/category/category.service';
+import { CategoryStoreItem } from './services/category/categories.storeitmes';
+import { ProductStoreItem } from './services/product/product.storeItem';
 
 @NgModule({
   declarations: [],
@@ -25,6 +25,6 @@ import { CategoryStoreItem } from './services/categories.storeitmes';
     RatingsComponent,
     SharedModule,
   ],
-  providers: [CategoryService, CategoryStoreItem],
+  providers: [CategoryService, CategoryStoreItem, ProductStoreItem],
 })
 export class HomeModule {}

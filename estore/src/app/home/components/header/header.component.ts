@@ -5,7 +5,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons'; // Correctly import the icon
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Import FontAwesomeModule
-import { CategoryStoreItem } from '../../services/categories.storeitmes';
+import { CategoryStoreItem } from '../../services/category/categories.storeitmes';
 import { CommonModule } from '@angular/common';
 
 @Component({
