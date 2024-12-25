@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ProductListItem } from './products.type';
-import { products } from './products.data';
+import { Product } from './products.type';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
-  getProductList(): ProductListItem[] {
-    return products;
+  getProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>('http://localhost:5001/products');
   }
 }

@@ -1,10 +1,7 @@
 <div class="main-product-container">
   <div *ngFor="let product of products" class="mx-5 p-3 product-card">
     <div>
-      <img
-        [src]="'/assets/images/' + product.product_img + '.jpg'"
-        alt="Jacket"
-      />
+      <img [src]="'/assets/images/' + product.product_img" alt="Jacket" />
     </div>
     <div class="product-info">
       <h5>
