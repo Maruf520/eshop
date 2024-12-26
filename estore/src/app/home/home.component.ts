@@ -6,6 +6,8 @@ import { ProductsComponent } from './components/products/products.component';
 import { CategoryStoreItem } from './services/category/categories.storeitmes';
 import { ProductStoreItem } from './services/product/product.storeItem';
 import { Category } from './types/category.type';
+import { SearchKeyword } from './types/searchKeyword.type';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,7 @@ import { Category } from './types/category.type';
     HeaderComponent,
     SidenavigationComponent,
     ProductsComponent,
+    RouterOutlet,
   ],
   providers: [CategoryStoreItem, ProductStoreItem],
   templateUrl: './home.component.html',
@@ -29,10 +32,15 @@ export class HomeComponent {
     this.productStoreItem.loadProducts();
   }
 
-  onSelectSubCategory(subCategoryId: number): void {
-    this.productStoreItem.loadProducts('subcategoryid=' + subCategoryId);
-  }
   onSelectCategory(category: number): void {
     this.productStoreItem.loadProducts('maincategoryid=' + category);
+  }
+  onSearchKeyword(searchKeyword: SearchKeyword): void {
+    this.productStoreItem.loadProducts(
+      'maincategoryid=' +
+        searchKeyword.categoryId +
+        '&keyword=' +
+        searchKeyword.keyword
+    );
   }
 }

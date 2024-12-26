@@ -11,6 +11,9 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryService } from './services/category/category.service';
 import { CategoryStoreItem } from './services/category/categories.storeitmes';
 import { ProductStoreItem } from './services/product/product.storeItem';
+import { RouterModule } from '@angular/router';
+import { HomeRoutingModule } from './home-routing.module';
+import { CartStoreItem } from './services/cart/cart.storeItem';
 
 @NgModule({
   declarations: [],
@@ -24,7 +27,14 @@ import { ProductStoreItem } from './services/product/product.storeItem';
     ProductsComponent,
     RatingsComponent,
     SharedModule,
+    RouterModule,
+    HomeRoutingModule,
   ],
-  providers: [CategoryService, CategoryStoreItem, ProductStoreItem],
+  providers: [
+    CategoryService,
+    CategoryStoreItem,
+    ProductStoreItem,
+    CartStoreItem,
+  ],
 })
 export class HomeModule {}

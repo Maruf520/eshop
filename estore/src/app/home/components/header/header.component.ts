@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   faSearch,
   faUserCircle,
@@ -7,7 +7,9 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Import FontAwesomeModule
 import { CategoryStoreItem } from '../../services/category/categories.storeitmes';
 import { CommonModule } from '@angular/common';
-
+import { SearchKeyword } from '../../types/searchKeyword.type';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -20,5 +22,26 @@ export class HeaderComponent {
   faserUserCirlce = faUserCircle;
   faShoppingCart = faShoppingCart;
 
-  constructor(public categoryStoreItem: CategoryStoreItem) {}
+  displaySearch: boolean = true;
+
+  @Output()
+  searchClicked = new EventEmitter<SearchKeyword>();
+  constructor(
+    public categoryStoreItem: CategoryStoreItem,
+    private router: Router
+  ) {
+    router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.displaySearch =
+          (event as NavigationEnd).url === '/home/products' ? true : false;
+      });
+  }
+
+  onClickSearch(keyword: string, categoryId: string): void {
+    this.searchClicked.emit({
+      categoryId: parseInt(categoryId),
+      keyword: keyword,
+    });
+  }
 }
