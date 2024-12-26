@@ -29,14 +29,36 @@ export class CartStoreItem extends StoreItem<Cart> {
         ...this.cart.products,
         {
           product: product,
-          amount: product.price,
+          amount: Number(product.price),
           quantity: 1,
         },
       ];
     } else {
       cartProduct.quantity++;
+      cartProduct.amount += Number(product.price);
     }
     this.cart.totalAmount += Number(product.price);
     ++this.cart.totalProducts;
+  }
+  removeProduct(cartItem: CartItem): void {
+    this.cart.products = this.cart.products.filter(
+      (item) => item.product.id !== cartItem.product.id
+    );
+    this.cart.totalProducts -= cartItem.quantity;
+    this.cart.totalAmount -= cartItem.amount;
+  }
+  decreaseProductQuantity(cartItem: CartItem): void {
+    const cartProduct: CartItem | undefined = this.cart.products.find(
+      (cartProduct) => cartProduct.product.id === cartItem.product.id
+    );
+    if (cartProduct) {
+      if (cartProduct.quantity === 1) {
+        this.removeProduct(cartProduct);
+      } else {
+        cartProduct.quantity--;
+        this.cart.totalProducts -= Number(cartItem.product.price);
+        --this.cart.totalProducts;
+      }
+    }
   }
 }
