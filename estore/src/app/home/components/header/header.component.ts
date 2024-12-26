@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { SearchKeyword } from '../../types/searchKeyword.type';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { CartStoreItem } from '../../services/cart/cart.storeItem';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -28,7 +29,8 @@ export class HeaderComponent {
   searchClicked = new EventEmitter<SearchKeyword>();
   constructor(
     public categoryStoreItem: CategoryStoreItem,
-    private router: Router
+    private router: Router,
+    public cartStore: CartStoreItem
   ) {
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
