@@ -8,13 +8,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Import 
 import { CategoryStoreItem } from '../../services/category/categories.storeitmes';
 import { CommonModule } from '@angular/common';
 import { SearchKeyword } from '../../types/searchKeyword.type';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 import { CartStoreItem } from '../../services/cart/cart.storeItem';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule],
+  imports: [FontAwesomeModule, CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

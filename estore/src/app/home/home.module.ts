@@ -14,6 +14,7 @@ import { ProductStoreItem } from './services/product/product.storeItem';
 import { RouterModule } from '@angular/router';
 import { HomeRoutingModule } from './home-routing.module';
 import { CartStoreItem } from './services/cart/cart.storeItem';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import { CartStoreItem } from './services/cart/cart.storeItem';
     SharedModule,
     RouterModule,
     HomeRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [
     CategoryService,

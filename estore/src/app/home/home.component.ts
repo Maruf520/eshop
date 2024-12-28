@@ -8,6 +8,8 @@ import { ProductStoreItem } from './services/product/product.storeItem';
 import { Category } from './types/category.type';
 import { SearchKeyword } from './types/searchKeyword.type';
 import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -26,10 +28,18 @@ import { RouterOutlet } from '@angular/router';
 export class HomeComponent {
   constructor(
     private categoryStoreItem: CategoryStoreItem,
-    private productStoreItem: ProductStoreItem
+    private productStoreItem: ProductStoreItem,
+    private router: Router
   ) {
     this.categoryStoreItem.loadCategories();
     this.productStoreItem.loadProducts();
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        if ((event as NavigationEnd).url === '/home') {
+          router.navigate(['/home/products']);
+        }
+      });
   }
 
   onSelectCategory(category: number): void {
