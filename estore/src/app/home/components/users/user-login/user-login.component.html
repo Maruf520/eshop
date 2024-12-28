@@ -1,0 +1,49 @@
+<div class="container">
+  <form [formGroup]="userLogInForm" (ngSubmit)="onSUbmit()">
+    <div class="form-group form-group-margin">
+      <label for="email">Eamil*</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+      <span
+        class="text-danger"
+        *ngIf="email?.touched && email?.errors?.['required']"
+        >Email is required</span
+      >
+      <span
+        class="text-danger"
+        *ngIf="email?.touched && email?.errors?.['email']"
+        >Enter a valid Email</span
+      >
+    </div>
+    <div class="form-group form-group-margin">
+      <label for="password">Password*</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+      />
+      <span
+        class="text-danger"
+        *ngIf="password?.touched && password?.errors?.['required']"
+        >Password is required</span
+      >
+    </div>
+    <div class="text-center form-group-margin">
+      <button
+        type="submit"
+        class="btn btn-warning"
+        [disabled]="!userLogInForm.valid"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="text-center form-group-margin">
+      Not a member? <a routerLink="../signup">Register</a>
+    </div>
+  </form>
+</div>
