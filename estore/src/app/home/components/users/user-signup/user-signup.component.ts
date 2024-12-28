@@ -9,6 +9,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { matchPasswords } from './validators/match-password.validator';
+import { UserService } from '../services/user-service.service';
+import { User } from '../../../types/user.type';
 
 @Component({
   selector: 'app-user-signup',
@@ -19,8 +21,10 @@ import { matchPasswords } from './validators/match-password.validator';
 })
 export class UserSignupComponent implements OnInit {
   userSignupForm!: FormGroup;
+  alertMessage: string = '';
+  alertType: number = 0; // 0-success, 1-warning, 2-error
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
   ngOnInit(): void {
     this.userSignupForm = this.fb.group(
       {
@@ -54,5 +58,31 @@ export class UserSignupComponent implements OnInit {
     return this.userSignupForm.get('confirmPassword');
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    const user: User = {
+      firstName: this.firstName?.value,
+      lastName: this.userSignupForm.get('lastName')?.value,
+      address: this.userSignupForm.get('address')?.value,
+      city: this.userSignupForm.get('city')?.value,
+      state: this.userSignupForm.get('state')?.value,
+      pin: this.userSignupForm.get('pin')?.value,
+      email: this.email?.value,
+      password: this.password?.value,
+    };
+    this.userService.createUser(user).subscribe({
+      next: (result) => {
+        if (result.message === 'success') {
+          this.alertMessage = 'User Created Successfully.';
+          this.alertType = 0;
+        } else if (result.message === 'Email already exists') {
+          this.alertMessage = result.message;
+          this.alertType = 1;
+        }
+      },
+      error: (error) => {
+        this.alertMessage = error.message;
+        this.alertType = 2;
+      },
+    });
+  }
 }
