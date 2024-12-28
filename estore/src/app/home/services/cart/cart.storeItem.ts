@@ -1,15 +1,20 @@
 import { StoreItem } from '../../../shared/storeItem';
 import { Cart, CartItem } from '../../types/cart.type';
 import { Product } from '../../types/products.type';
-import { Observable } from 'rxjs';
+import { elementAt, Observable } from 'rxjs';
 
 export class CartStoreItem extends StoreItem<Cart> {
   constructor() {
-    super({
-      products: [],
-      totalAmount: 0,
-      totalProducts: 0,
-    });
+    const storeCart: any = sessionStorage.getItem('cart');
+    if (storeCart) {
+      super(JSON.parse(storeCart));
+    } else {
+      super({
+        products: [],
+        totalAmount: 0,
+        totalProducts: 0,
+      });
+    }
   }
 
   get cart$(): Observable<Cart> {
@@ -39,6 +44,7 @@ export class CartStoreItem extends StoreItem<Cart> {
     }
     this.cart.totalAmount += Number(product.price);
     ++this.cart.totalProducts;
+    this.saveCart();
   }
   removeProduct(cartItem: CartItem): void {
     this.cart.products = this.cart.products.filter(
@@ -46,6 +52,12 @@ export class CartStoreItem extends StoreItem<Cart> {
     );
     this.cart.totalProducts -= cartItem.quantity;
     this.cart.totalAmount -= cartItem.amount;
+
+    if (this.cart.totalProducts === 0) {
+      sessionStorage.clear();
+    } else {
+      this.saveCart();
+    }
   }
   decreaseProductQuantity(cartItem: CartItem): void {
     const cartProduct: CartItem | undefined = this.cart.products.find(
@@ -58,7 +70,13 @@ export class CartStoreItem extends StoreItem<Cart> {
         cartProduct.quantity--;
         this.cart.totalProducts -= Number(cartItem.product.price);
         --this.cart.totalProducts;
+        this.saveCart();
       }
     }
+  }
+
+  saveCart(): void {
+    sessionStorage.clear();
+    sessionStorage.setItem('cart', JSON.stringify(this.cart));
   }
 }
