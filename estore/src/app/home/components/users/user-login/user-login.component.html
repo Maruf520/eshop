@@ -1,7 +1,7 @@
 <div class="container">
-  <form [formGroup]="userLogInForm" (ngSubmit)="onSUbmit()">
+  <form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
     <div class="form-group form-group-margin">
-      <label for="email">Eamil*</label>
+      <label for="email">Email*</label>
       <input
         type="text"
         class="form-control"
@@ -11,13 +11,16 @@
       <span
         class="text-danger"
         *ngIf="email?.touched && email?.errors?.['required']"
-        >Email is required</span
       >
+        Email is required
+      </span>
+
       <span
         class="text-danger"
         *ngIf="email?.touched && email?.errors?.['email']"
-        >Enter a valid Email</span
       >
+        Enter valid email address
+      </span>
     </div>
     <div class="form-group form-group-margin">
       <label for="password">Password*</label>
@@ -30,20 +33,31 @@
       <span
         class="text-danger"
         *ngIf="password?.touched && password?.errors?.['required']"
-        >Password is required</span
       >
+        Password is required
+      </span>
     </div>
+
     <div class="text-center form-group-margin">
       <button
         type="submit"
         class="btn btn-warning"
-        [disabled]="!userLogInForm.valid"
+        [disabled]="!userLoginForm.valid"
       >
-        Submit
+        Sign In
       </button>
     </div>
+
     <div class="text-center form-group-margin">
       Not a member? <a routerLink="../signup">Register</a>
+    </div>
+
+    <div
+      class="alert"
+      [ngClass]="alertType === 0 ? 'alert-success' : 'alert-danger'"
+      *ngIf="alertMessage !== ''"
+    >
+      {{ alertMessage }}
     </div>
   </form>
 </div>

@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { HomeRoutingModule } from './home-routing.module';
 import { CartStoreItem } from './services/cart/cart.storeItem';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './services/users/user-service.service';
 
 @NgModule({
   declarations: [],
@@ -37,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CategoryStoreItem,
     ProductStoreItem,
     CartStoreItem,
+    UserService,
   ],
 })
 export class HomeModule {}

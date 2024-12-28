@@ -1,5 +1,4 @@
-import { UserService } from '../components/users/services/user-service.service';
-
+import { UserService } from '../services/users/user-service.service';
 export interface Category {
   id: number;
   category: string;

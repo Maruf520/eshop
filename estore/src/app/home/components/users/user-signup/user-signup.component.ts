@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { matchPasswords } from './validators/match-password.validator';
-import { UserService } from '../services/user-service.service';
+import { UserService } from '../../../services/users/user-service.service';
 import { User } from '../../../types/user.type';
 
 @Component({
