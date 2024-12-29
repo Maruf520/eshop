@@ -6,6 +6,7 @@ import { loggedInUser, loginToken, User } from '../../types/user.type';
   providedIn: 'root',
 })
 export class UserService {
+  private authToken!: string;
   private autoLogoutTimer: any;
   private isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(
     false
@@ -28,7 +29,9 @@ export class UserService {
   get loggedInUser$(): Observable<loggedInUser> {
     return this.loggedInUserInfo.asObservable();
   }
-
+  get token(): string {
+    return this.authToken;
+  }
   createUser(user: User): Observable<any> {
     const url: string = 'http://localhost:5001/users/signup';
 
@@ -52,10 +55,12 @@ export class UserService {
     localStorage.setItem('city', token.user.city);
     localStorage.setItem('state', token.user.state);
     localStorage.setItem('pin', token.user.pin);
+    localStorage.setItem('email', token.user.email);
 
     this.isAuthenticated.next(true);
     this.loggedInUserInfo.next(token.user);
     this.setAutoLogoutTimer(Number(token.expiresInSeconds) * 1000);
+    this.authToken = token.token;
   }
   logout(): void {
     localStorage.clear();
@@ -79,6 +84,7 @@ export class UserService {
         const city: string | null = localStorage.getItem('city');
         const state: string | null = localStorage.getItem('state');
         const pin: string | null = localStorage.getItem('pin');
+        const email: string | null = localStorage.getItem('email');
 
         const user: loggedInUser = {
           firstName: firstName != null ? firstName : '',
@@ -87,10 +93,12 @@ export class UserService {
           city: city != null ? city : '',
           state: state != null ? state : '',
           pin: pin != null ? pin : '',
+          email: email != null ? email : '',
         };
         this.isAuthenticated.next(true);
         this.loggedInUserInfo.next(user);
         this.setAutoLogoutTimer(expiresIn);
+        this.authToken = token;
       } else {
         this.logout();
       }
